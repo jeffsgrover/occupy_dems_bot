@@ -1,4 +1,4 @@
-import json, random, tweepy, credentials, sys
+import json, random, tweepy, sys
 from os import environ
 
 # oauth_ID      = credentials.oauth_2_0_client_ID
