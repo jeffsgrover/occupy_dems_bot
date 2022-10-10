@@ -1,10 +1,15 @@
 import json, random, tweepy, credentials, sys
 from os import environ
 
-CONSUMER_KEY    = environ['CONSUMER_KEY']
-CONSUMER_SECRET = environ['CONSUMER_SECRET']
-ACCESS_KEY      = environ['ACCESS_KEY']
-ACCESS_SECRET   = environ['ACCESS_SECRET']
+CONSUMER_KEY    = credentials.oauth_2_0_client_ID
+CONSUMER_SECRET = credentials.oauth_2_0_client_ID_secret
+ACCESS_KEY      = credentials.access_token
+ACCESS_SECRET   = credentials.access_token_secret
+
+# CONSUMER_KEY    = environ['CONSUMER_KEY']
+# CONSUMER_SECRET = environ['CONSUMER_SECRET']
+# ACCESS_KEY      = environ['ACCESS_KEY']
+# ACCESS_SECRET   = environ['ACCESS_SECRET']
 
 def get_tweets():
     with open('occupy_tweets.json') as f:
