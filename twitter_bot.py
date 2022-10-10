@@ -11,6 +11,7 @@ from os import environ
 
 access_token  = environ['access_token']
 access_secret = environ['access_token_secret']
+bearer_token  = environ['bearer_token']
 api_key       = environ['API_key']
 api_secret    = environ['API_key_secret']
 
