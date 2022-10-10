@@ -1,15 +1,19 @@
 import json, random, tweepy, credentials, sys
 from os import environ
 
-CONSUMER_KEY    = credentials.oauth_2_0_client_ID
-CONSUMER_SECRET = credentials.oauth_2_0_client_ID_secret
-ACCESS_KEY      = credentials.access_token
-ACCESS_SECRET   = credentials.access_token_secret
+# oauth_ID      = credentials.oauth_2_0_client_ID
+# oauth_secret  = credentials.oauth_2_0_client_ID_secret
+# access_token  = credentials.access_token
+# access_secret = credentials.access_token_secret
+# bearer_token  = credentials.bearer_token
+# api_key       = credentials.API_key
+# api_secret    = credentials.API_key_secret
 
-# CONSUMER_KEY    = environ['CONSUMER_KEY']
-# CONSUMER_SECRET = environ['CONSUMER_SECRET']
-# ACCESS_KEY      = environ['ACCESS_KEY']
-# ACCESS_SECRET   = environ['ACCESS_SECRET']
+access_token  = environ['access_token']
+access_secret = environ['access_token_secret']
+bearer_token  = environ['bearer_token']
+api_key       = environ['API_key']
+api_secret    = environ['API_key_secret']
 
 def get_tweets():
     with open('occupy_tweets.json') as f:
@@ -19,15 +23,17 @@ def get_tweets():
 def get_random_tweet():
     tweets = get_tweets()
     random_tweet = random.choice(tweets)
-    return random_tweet
+    return random_tweet['tweet']
 
-def post_tweet():
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-    api = tweepy.API(auth)
-    
-    tweet = get_random_tweet()
-    api.update_status(tweet)
-    
+
+client = tweepy.Client(bearer_token=bearer_token)
+
+client = tweepy.Client(
+    consumer_key        = api_key,
+    consumer_secret     = api_secret,
+    access_token        = access_token,
+    access_token_secret = access_secret
+)
+
 if __name__ == "__main__":
-    post_tweet()
+    client.create_tweet(text=get_random_tweet())
